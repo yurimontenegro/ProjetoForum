@@ -18,8 +18,8 @@ import br.com.alura.forum.controller.dto.TokenDto;
 import br.com.alura.forum.controller.form.LoginForm;
 
 @RestController
-@RequestMapping("/auth")
-public class AutenticacaoController {
+@RequestMapping("/login")
+public class LoginController {
 	
 	@Autowired
 	private AuthenticationManager authManager; 

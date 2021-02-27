@@ -46,7 +46,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception { //CONFIGURAÇÕES DE AUTORIZAÇÃO - QUEM PODE ACESSAR URL, ETC.
 
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/auth").permitAll()       //PERMITINDO INSERIR USUÁRIO E SENHA;   
+		.antMatchers(HttpMethod.POST, "/login").permitAll()      //PERMITINDO LOGIN;
+		.antMatchers(HttpMethod.POST, "/register").permitAll()   //PERMITINDO REGISTRO;   
+		.antMatchers(HttpMethod.GET, "/").permitAll()      	 	 //PERMITINDO HOME;
 		.antMatchers(HttpMethod.GET, "/topicos").permitAll()     //PERMITINDO O GET DA LISTAGEM DE TOPICOS;
 		.antMatchers(HttpMethod.GET, "/topicos/*").permitAll()   //PERMITINDO O GET POR ID;
 		.antMatchers(HttpMethod.GET, "/actuator/**").permitAll() //PERMITINDO O GET DO ACTUATOR;
@@ -62,5 +64,4 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 		//IGNORA A VERIFICAÇÃO DE SEGURANÇA DOS ENDEREÇOS CONFIGURADOS ABAIXO:
 		web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources");
 	}
-	
 }

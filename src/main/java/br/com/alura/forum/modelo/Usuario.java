@@ -1,5 +1,6 @@
 package br.com.alura.forum.modelo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,17 +16,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Usuario implements UserDetails{ //DECLARA QUE A CLASSE TEM DETALHES DE UM USUÁRIO;
+public class Usuario implements UserDetails { // DECLARA QUE A CLASSE TEM DETALHES DE UM USUÁRIO;
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String email;
 	private String senha;
-	
-	@ManyToMany(fetch = FetchType.EAGER) //UM USUÁRIO PODE TER VÁRIOS PERFIS, E 1 PERFIL PODE TÁ ATRELADO A VARIOS USUÁRIOS.
+	private LocalDateTime dataCriacao = LocalDateTime.now();
+
+	@ManyToMany(fetch = FetchType.EAGER) // UM USUÁRIO PODE TER VÁRIOS PERFIS, E 1 PERFIL PODE TÁ ATRELADO A VARIOS
+											// USUÁRIOS.
 	private List<Perfil> perfis = new ArrayList<>();
 
 	@Override
@@ -52,6 +56,16 @@ public class Usuario implements UserDetails{ //DECLARA QUE A CLASSE TEM DETALHES
 			return false;
 		return true;
 	}
+	
+	public Usuario() {
+	}
+	
+	public Usuario(String nome, String email, String senha) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+	}
 
 	public Long getId() {
 		return id;
@@ -77,12 +91,12 @@ public class Usuario implements UserDetails{ //DECLARA QUE A CLASSE TEM DETALHES
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setDataCriacao(LocalDateTime dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	}
 
 	@Override

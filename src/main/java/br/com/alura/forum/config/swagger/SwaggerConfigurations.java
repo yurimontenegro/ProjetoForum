@@ -12,8 +12,10 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
+@EnableSwagger2
 public class SwaggerConfigurations {
 
 @Bean
@@ -24,6 +26,7 @@ public Docket api() {
                 .paths(PathSelectors.ant("/**")) //ANÁLISE LIBERADA PARA TODAS AS URLS;
                 .build() //CONSTRUIR O OBJETO;
                 .ignoredParameterTypes(Usuario.class) //IGNOREM TODAS AS URLS QUE TRABALHAM COM O USUÁRIO, POIS EXISTEM DADOS CONFID.
+                
                 .globalOperationParameters(Arrays.asList( //CONFIGURANDO PARÂMETROS GLOBAIS
                 		new ParameterBuilder()
                         .name("Authorization") //NOME DO PARÂMETRO;
