@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.sun.istack.NotNull;
 
-import br.com.alura.forum.modelo.Topico;
+import br.com.alura.forum.model.Topico;
 import br.com.alura.forum.repository.TopicoRepository;
 
 public class AtualizacaoTopicoForm {

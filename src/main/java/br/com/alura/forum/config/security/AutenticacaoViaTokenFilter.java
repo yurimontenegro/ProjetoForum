@@ -11,15 +11,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.alura.forum.modelo.Usuario;
-import br.com.alura.forum.repository.UsuarioRepository;
+import br.com.alura.forum.model.Usuario;
+import br.com.alura.forum.repository.UserRepository;
 
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 	
 	private TokenService tokenService;
-	private UsuarioRepository repository;
+	private UserRepository repository;
 	
-	public AutenticacaoViaTokenFilter(TokenService tokenService, UsuarioRepository repository) {
+	public AutenticacaoViaTokenFilter(TokenService tokenService, UserRepository repository) {
 		this.tokenService = tokenService;
 		this.repository = repository;
 	}

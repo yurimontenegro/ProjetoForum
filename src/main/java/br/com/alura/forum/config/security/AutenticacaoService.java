@@ -8,14 +8,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.forum.modelo.Usuario;
-import br.com.alura.forum.repository.UsuarioRepository;
+import br.com.alura.forum.model.Usuario;
+import br.com.alura.forum.repository.UserRepository;
 
 @Service //É UM SERVIÇO DO SPRING.
 public class AutenticacaoService implements UserDetailsService{
 
 	@Autowired
-	private UsuarioRepository repository; //CHAMEI O REPOSITORY
+	private UserRepository repository; //CHAMEI O REPOSITORY
 	
 	@Override
 	//NO LOGIN, O SPRING VAI ENTENDER QUE ESSA CLASSE É DE IDENTIFICAÇÃO DO USUÁRIO.

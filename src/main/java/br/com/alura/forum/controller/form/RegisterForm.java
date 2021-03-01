@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.sun.istack.NotNull;
 
-import br.com.alura.forum.modelo.Usuario;
+import br.com.alura.forum.model.Usuario;
 
 public class RegisterForm {
 
@@ -23,7 +23,8 @@ public class RegisterForm {
 	protected String senha;
 
 	public Usuario converter() {
-		return new Usuario(nome, email, new BCryptPasswordEncoder().encode(senha));
+		Usuario usuario = new Usuario(nome, email, new BCryptPasswordEncoder().encode(senha));
+		return usuario;
 	}
 
 	public String getNome() {

@@ -14,7 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.alura.forum.repository.UsuarioRepository;
+import br.com.alura.forum.repository.UserRepository;
 
 @EnableWebSecurity //HABILITEI O MÓDULO SPRING SECURITY NA MINHA APLICAÇÃO;
 @Configuration     //NO START DO SISTEMA, O SPRING RECONHECE QUE ESSA CLASSE É DE CONFIGURAÇÃO;
@@ -24,7 +24,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	private TokenService tokenService;
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UserRepository usuarioRepository;
 	
 	@Autowired //INJETANDO UMA DEPENDÊNCIA.
 	private AutenticacaoService AutenticacaoService;
@@ -46,12 +46,15 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception { //CONFIGURAÇÕES DE AUTORIZAÇÃO - QUEM PODE ACESSAR URL, ETC.
 
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/login").permitAll()      //PERMITINDO LOGIN;
-		.antMatchers(HttpMethod.POST, "/register").permitAll()   //PERMITINDO REGISTRO;   
-		.antMatchers(HttpMethod.GET, "/").permitAll()      	 	 //PERMITINDO HOME;
-		.antMatchers(HttpMethod.GET, "/topicos").permitAll()     //PERMITINDO O GET DA LISTAGEM DE TOPICOS;
-		.antMatchers(HttpMethod.GET, "/topicos/*").permitAll()   //PERMITINDO O GET POR ID;
-		.antMatchers(HttpMethod.GET, "/actuator/**").permitAll() //PERMITINDO O GET DO ACTUATOR;
+		.antMatchers(HttpMethod.POST, "/login").permitAll()                   //PERMITINDO LOGIN;
+		.antMatchers(HttpMethod.POST, "/register").permitAll()                //PERMITINDO REGISTRO;   
+		.antMatchers(HttpMethod.GET, "/").permitAll()    	                  //PERMITINDO HOME;
+		.antMatchers(HttpMethod.GET, "/user/**").permitAll()         //PERMITINDO BUSCA DE USUÁRIO (MODERADOR);
+		.antMatchers(HttpMethod.DELETE, "/user/**").permitAll() //PERMITINDO DELETE DO USUÁRIO (ADMINISTRADOR);
+		.antMatchers(HttpMethod.GET, "/topicos").hasRole("MEMBRO")            //PERMITINDO O GET DA LISTAGEM DE TOPICOS;
+		.antMatchers(HttpMethod.GET, "/topicos/*").hasRole("MEMBRO")          //PERMITINDO O GET POR ID;
+		.antMatchers(HttpMethod.DELETE, "/topicos/**").hasRole("MODERADOR")   //PERMITINDO O DELETE DO TÓPICO (MODERADOR);
+		//.antMatchers(HttpMethod.GET, "/actuator/**").permitAll()            //PERMITINDO O GET DO ACTUATOR;
 		
 		.anyRequest().authenticated()
 		.and().csrf().disable()

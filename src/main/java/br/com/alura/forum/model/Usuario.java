@@ -1,4 +1,4 @@
-package br.com.alura.forum.modelo;
+package br.com.alura.forum.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,8 +28,8 @@ public class Usuario implements UserDetails { // DECLARA QUE A CLASSE TEM DETALH
 	private String senha;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 
-	@ManyToMany(fetch = FetchType.EAGER) // UM USUÁRIO PODE TER VÁRIOS PERFIS, E 1 PERFIL PODE TÁ ATRELADO A VARIOS
-											// USUÁRIOS.
+	@ManyToMany(fetch = FetchType.EAGER)     // UM USUÁRIO PODE TER VÁRIOS PERFIS, E 1 PERFIL PODE TÁ ATRELADO A VARIOS USUÁRIOS;
+
 	private List<Perfil> perfis = new ArrayList<>();
 
 	@Override

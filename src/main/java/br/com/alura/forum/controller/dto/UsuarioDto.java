@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;
 
-import br.com.alura.forum.modelo.Usuario;
+import br.com.alura.forum.model.Usuario;
 
 public class UsuarioDto {
 	private Long id;

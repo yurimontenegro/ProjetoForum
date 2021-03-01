@@ -29,7 +29,7 @@ import br.com.alura.forum.controller.dto.DetalhesDoTopicoDto;
 import br.com.alura.forum.controller.dto.TopicoDto;
 import br.com.alura.forum.controller.form.AtualizacaoTopicoForm;
 import br.com.alura.forum.controller.form.TopicoForm;
-import br.com.alura.forum.modelo.Topico;
+import br.com.alura.forum.model.Topico;
 import br.com.alura.forum.repository.CursoRepository;
 import br.com.alura.forum.repository.TopicoRepository;
 
@@ -47,7 +47,7 @@ public class TopicosController {
 	@GetMapping // MÉTODO QUE PUXA AS INFORMAÇÕES; ESTAREI ENTREGANDO INFORMAÇÕES.
 	@Cacheable (value = "listaDeTopicos") //UTILIZEI O MÉTODO CACHE E O IDENTIFIQUEI;
 	public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, //REQUESTPARAM: PARÂMETRO OBRIGATÓRIO 
-			@PageableDefault(page = 0, size = 20, sort = "id", direction = Direction.ASC) Pageable paginacao) {                                                  //PAGEABLE JÁ RECEBE TODOS OS PARÂMETROS NECESSÁRIOS;
+			@PageableDefault(page = 0, size = 20, sort = "id", direction = Direction.ASC) Pageable paginacao) { //PAGEABLE JÁ RECEBE TODOS OS PARÂMETROS NECESSÁRIOS;
 
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao); //PAGINAÇÃO NÃO FUNCIONA COM LIST, É NECESSÁRIO USAR O PAGE;
