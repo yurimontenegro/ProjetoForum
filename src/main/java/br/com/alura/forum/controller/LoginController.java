@@ -17,9 +17,7 @@ import br.com.alura.forum.config.security.TokenService;
 import br.com.alura.forum.controller.dto.TokenDto;
 import br.com.alura.forum.controller.form.LoginForm;
 import br.com.alura.forum.repository.UserRepository;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Product Controller", description = "Product Management")
 @RestController
 @RequestMapping("/login")
 public class LoginController {
