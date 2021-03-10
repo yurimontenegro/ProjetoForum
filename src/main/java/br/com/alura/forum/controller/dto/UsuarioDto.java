@@ -11,12 +11,14 @@ public class UsuarioDto {
 	private String nome;
 	private String email;
 	private LocalDateTime dataCriacao;
+	private boolean contaAtiva;
 
 	public UsuarioDto(Usuario usuario) {
 		this.id = usuario.getId();
 		this.nome = usuario.getNome();
 		this.email = usuario.getEmail();
 		this.dataCriacao = usuario.getDataCriacao();
+		this.contaAtiva = usuario.isContaAtiva();
 	}
 
 	public Long getId() {
@@ -33,6 +35,10 @@ public class UsuarioDto {
 
 	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
+	}
+	
+	public boolean isContaAtiva() {
+		return contaAtiva;
 	}
 
 	public static Page<UsuarioDto> converter(Page<Usuario> usuarios) {

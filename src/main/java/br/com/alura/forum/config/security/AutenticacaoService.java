@@ -21,7 +21,7 @@ public class AutenticacaoService implements UserDetailsService{
 	//NO LOGIN, O SPRING VAI ENTENDER QUE ESSA CLASSE É DE IDENTIFICAÇÃO DO USUÁRIO.
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { 
 		Optional <Usuario> usuario = repository.findByEmail(username);
-		if (usuario.isPresent()) {
+		if (usuario.isPresent() && usuario.get().isContaAtiva()) {
 			return usuario.get();
 		} 
 		throw new UsernameNotFoundException("DADOS INVÁLIDOS");

@@ -27,9 +27,9 @@ public class Usuario implements UserDetails { // DECLARA QUE A CLASSE TEM DETALH
 	private String email;
 	private String senha;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
-
+	private boolean contaAtiva = false;
+	
 	@ManyToMany(fetch = FetchType.EAGER)     // UM USUÁRIO PODE TER VÁRIOS PERFIS, E 1 PERFIL PODE TÁ ATRELADO A VARIOS USUÁRIOS;
-
 	private List<Perfil> perfis = new ArrayList<>();
 
 	@Override
@@ -97,6 +97,14 @@ public class Usuario implements UserDetails { // DECLARA QUE A CLASSE TEM DETALH
 
 	public void setDataCriacao(LocalDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+	
+	public boolean isContaAtiva() {
+		return contaAtiva;
+	}
+
+	public void setContaAtiva(boolean contaAtiva) {
+		this.contaAtiva = contaAtiva;
 	}
 
 	@Override

@@ -65,6 +65,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web) throws Exception { //CONFIGURAÇÕES DE RECURSOS ESTÁTICOS - REQUISIÇÕES DE JS, CSS, IMAGENS, ETC.
 		//IGNORA A VERIFICAÇÃO DE SEGURANÇA DOS ENDEREÇOS CONFIGURADOS ABAIXO:
-		web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources");
+		web.ignoring().antMatchers("/**.html", "/v3/api-docs/**", "/webjars/**", "/configuration/**", "/swagger-resources", "/swagger-ui/**", "/swagger-ui");
 	}
 }

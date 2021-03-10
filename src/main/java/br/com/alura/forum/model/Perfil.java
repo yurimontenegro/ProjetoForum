@@ -35,7 +35,7 @@ public class Perfil implements GrantedAuthority{
 
 	@Override
 	public String getAuthority() {
-		return nome; //ÚNICO MÉTODOS DO GRANTEAUTHORITY. IRÁ RETORNAR O NOME DO PERFIL.
+		return nome; //ÚNICO MÉTODO DO GRANTEAUTHORITY. IRÁ RETORNAR O NOME DO PERFIL.
 	}
 
 }

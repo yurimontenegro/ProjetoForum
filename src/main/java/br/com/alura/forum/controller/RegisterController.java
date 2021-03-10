@@ -25,7 +25,10 @@ public class RegisterController {
 	
 	@PostMapping 
 	@Transactional 
-	public ResponseEntity<UsuarioDto> cadastrar(@RequestBody @Valid RegisterForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<UsuarioDto> cadastrar(@RequestBody @Valid RegisterForm form, UriComponentsBuilder uriBuilder) throws Exception {
+		if (usuarioRepository.findByEmail(form.getEmail()).isPresent()) {
+			return ResponseEntity.badRequest().build(); //SUBSTITUIR POR UMA EXCEPTION;
+		} 
 		return new ResponseEntity<UsuarioDto>(new UsuarioDto(usuarioRepository.save(form.converter())), HttpStatus.CREATED);
 	}
 	
